@@ -616,12 +616,13 @@ function stringMatcher() {
       console.log(name.substring(i, (i*1) +(p[0]*1)));
       p[1].forEach(t => {
         if (t === name.substring(i, (i*1) +(p[0]*1))) {
-            res[i] = p[0];
+            res[i] = t;
         }
       })
   }
   });
   console.log('ress ', res);
+  let selectedChar;
   var div = document.createElement('div');
   var nameArr = name.split("");
   nameArr.forEach((c, i) => {
@@ -636,4 +637,19 @@ function stringMatcher() {
   // div.textContent = "Sup, y'all?";
   div.setAttribute('class', 'result');
   document.body.appendChild(div);
+  var matchedChar = document.createElement('div');
+  matchedChar.setAttribute('class', 'charDiv');
+  var charArr = Object.entries(res);
+  charArr.forEach((char, i) => {
+    var span = document.createElement('span');
+    span.textContent = char[1];
+    span.addEventListener("click", () => {
+      selectedChar = charArr[i];
+      console.log('selectedChar  ', selectedChar);
+    });
+     matchedChar.appendChild(span);   
+  });
+  selectedChar = charArr[0];
+  console.log('selectedChar  ', selectedChar);
+  document.body.appendChild(matchedChar);
 }
